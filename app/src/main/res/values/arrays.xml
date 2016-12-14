@@ -2,7 +2,7 @@
 <resources>
     <string-array name="schedule">
         <item name="today">Today</item>
-        <item name="tommorow">Tommorow</item>
-        <item name="after_tomm">Day after Tommorow</item>
+        <item name="tommorow">Tomorrow</item>
+        <item name="after_tomm">Day after Tomorrow</item>
     </string-array>
 </resources>
