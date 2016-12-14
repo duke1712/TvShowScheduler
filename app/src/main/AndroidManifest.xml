@@ -18,6 +18,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.ShowsActivity"></activity>
+
+        <provider
+            android:name="com.pritesh.tvshowscheduler.Data.ShowProvider"
+            android:authorities="com.pritesh.tvshowscheduler.Data.ShowProvider"
+            android:exported="false" />
     </application>
 
 </manifest>

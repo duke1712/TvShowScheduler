@@ -47,7 +47,7 @@ public class ShowsActivity extends AppCompatActivity implements LoaderManager.Lo
     static Spinner schedule_spinner;
     RecyclerView recyclerView;
     ShowsAdapter showsAdapter;
-    String name;
+    String name,displayName;
     static ProgressDialog mProgressDialog;
     static OkHttpClient client = new OkHttpClient();
     List<Shows> showsList=new ArrayList<>();
@@ -57,7 +57,8 @@ public class ShowsActivity extends AppCompatActivity implements LoaderManager.Lo
         setContentView(R.layout.activity_shows);
         Intent intent=getIntent();
         name=intent.getStringExtra("CHANNEL_NAME");
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        displayName=intent.getStringExtra("CHANNEL_DISPLAY_NAME");
+        toolbar = (Toolbar) findViewById(R.id.toolbar1);
         setSupportActionBar(toolbar);
         mProgressDialog=new ProgressDialog(this,ProgressDialog.STYLE_SPINNER);
         mProgressDialog.setTitle("Loading...");
@@ -68,9 +69,8 @@ public class ShowsActivity extends AppCompatActivity implements LoaderManager.Lo
                 R.array.schedule, R.layout.spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         schedule_spinner.setAdapter(adapter);
-
+        toolbar.setTitle(displayName);
         showsAdapter=new ShowsAdapter(showsList,getApplicationContext());
-
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
