@@ -1,8 +1,12 @@
 package com.pritesh.tvshowscheduler.ui;
 
+import android.app.LoaderManager;
 import android.app.ProgressDialog;
+import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.content.Intent;
+import android.content.Loader;
+import android.database.Cursor;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -38,20 +42,21 @@ import okhttp3.Response;
 
 import static java.security.AccessController.getContext;
 
-public class ShowsActivity extends AppCompatActivity{
+public class ShowsActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<String>{
     private Toolbar toolbar;
     static Spinner schedule_spinner;
     RecyclerView recyclerView;
     ShowsAdapter showsAdapter;
-    ProgressDialog mProgressDialog;
-    OkHttpClient client = new OkHttpClient();
+    String name;
+    static ProgressDialog mProgressDialog;
+    static OkHttpClient client = new OkHttpClient();
     List<Shows> showsList=new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shows);
         Intent intent=getIntent();
-        final String name=intent.getStringExtra("CHANNEL_NAME");
+        name=intent.getStringExtra("CHANNEL_NAME");
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         mProgressDialog=new ProgressDialog(this,ProgressDialog.STYLE_SPINNER);
@@ -69,11 +74,23 @@ public class ShowsActivity extends AppCompatActivity{
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(showsAdapter);
+       recyclerView.setAdapter(showsAdapter);
+        Bundle bundle=new Bundle();
+        bundle.putString("NAME",name);
+        getLoaderManager().initLoader(0,null,this);
+
         schedule_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                new getShowsTask().execute(name);
+               // new getShowsTask().execute(name);
+                if(schedule_spinner.getSelectedItem().toString().equals("Today")) {
+                    start(0);
+                }
+                else if (schedule_spinner.getSelectedItem().toString().equals("Tomorrow"))
+                    start(1);
+                else {
+                    start(2);
+                }
             }
 
             @Override
@@ -83,12 +100,16 @@ public class ShowsActivity extends AppCompatActivity{
         });
 
     }
+    void start(int i)
+    {
+        getLoaderManager().initLoader(i,null,this);
+    }
     public static String getDate()
     {
         return schedule_spinner.getSelectedItem().toString();
     }
 
-    String run(String url) throws IOException {
+    static String run(String url) throws IOException {
         Request request = new Request.Builder()
                 .url(url)
                 .build();
@@ -97,46 +118,61 @@ public class ShowsActivity extends AppCompatActivity{
         return response.body().string();
     }
 
-    public class getShowsTask extends AsyncTask<String,Integer ,String> {
-        String data;
+    @Override
+    public Loader<String> onCreateLoader(int i, Bundle bundle) {
+        return new getShowsTask(this,name);
+    }
 
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            mProgressDialog.show();
+    @Override
+    public void onLoadFinished(Loader<String> loader, String s) {
+        try {
+            JSONObject root=new JSONObject(s);
+            JSONArray list=root.getJSONArray(Constants.SHOW_LIST);
+            int l=list.length();
+            for(int i=0;i<l;i++)
+            {
+                JSONObject show=(JSONObject) list.get(i);
+                showsList.add(
+                        new Shows(
+                                show.getString(Constants.JSON_TITLE),
+                                show.getString(Constants.JSON_TIME),
+                                show.getString(Constants.JSON_URL)));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        showsAdapter.notifyDataSetChanged();
+        mProgressDialog.cancel();
+    }
+
+
+    @Override
+    public void onLoaderReset(Loader loader) {
+
+    }
+
+    public static class getShowsTask extends AsyncTaskLoader<String> {
+        String data;
+        String channel;
+        public getShowsTask(Context context,String channel) {
+            super(context);
+            this.channel=channel;
         }
 
         @Override
-        protected String doInBackground(String... channels) {
-            String url= Constants.BASE_URL+channels[0]+Constants.END_URL+ Utils.getDate(getDate());
+        protected void onStartLoading() {
+            mProgressDialog.show();
+            forceLoad();
+        }
+        @Override
+        public String loadInBackground() {
+            String url= Constants.BASE_URL+channel+Constants.END_URL+ Utils.getDate(getDate());
             try {
-               data =run(url);
+                data =run(url);
             } catch (IOException e) {
                 e.printStackTrace();
             }
             return data;
-        }
-        @Override
-        protected void onPostExecute(String s) {
-            try {
-                JSONObject root=new JSONObject(s);
-                JSONArray list=root.getJSONArray(Constants.SHOW_LIST);
-                int l=list.length();
-                for(int i=0;i<l;i++)
-                {
-                    JSONObject show=(JSONObject) list.get(i);
-                    showsList.add(
-                            new Shows(
-                            show.getString(Constants.JSON_TITLE),
-                            show.getString(Constants.JSON_TIME),
-                            show.getString(Constants.JSON_URL)));
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            showsAdapter.notifyDataSetChanged();
-            mProgressDialog.cancel();
-            //super.onPostExecute(s);
         }
     }
 }
