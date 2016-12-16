@@ -3,6 +3,7 @@
     package="com.pritesh.tvshowscheduler">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
@@ -17,12 +18,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.ShowsActivity"></activity>
+        <activity android:name=".ui.ShowsActivity" />
 
         <provider
-            android:name="com.pritesh.tvshowscheduler.Data.ShowProvider"
-            android:authorities="com.pritesh.tvshowscheduler.Data.ShowProvider"
+            android:name=".data.generated.ShowProvider"
+            android:authorities="com.pritesh.tvshowscheduler.data"
             android:exported="false" />
+
+        <receiver
+            android:name=".AlarmReciever"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="ALARM" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".ui.DialogActivity"
+            android:launchMode="singleTask"></activity>
     </application>
 
 </manifest>

@@ -6,4 +6,5 @@
     <string name="JSON_URL">showThumb</string>
     <string name="JSON_TITLE">showTitle</string>
     <string name="JSON_TIME">showTime</string>
+    <string name="NOTIFICATION_TITLE">Show Reminder</string>
 </resources>
