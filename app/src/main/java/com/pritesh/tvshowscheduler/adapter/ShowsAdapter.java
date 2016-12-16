@@ -5,6 +5,8 @@ import android.app.PendingIntent;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,7 +20,9 @@ import android.widget.Toast;
 import com.pritesh.tvshowscheduler.AlarmReciever;
 import com.pritesh.tvshowscheduler.data.Columns;
 import com.pritesh.tvshowscheduler.R;
+import com.pritesh.tvshowscheduler.data.ShowProvider;
 import com.pritesh.tvshowscheduler.model.Shows;
+import com.pritesh.tvshowscheduler.ui.ReminderFragment;
 import com.pritesh.tvshowscheduler.ui.ShowsActivity;
 import com.squareup.picasso.Picasso;
 
@@ -80,10 +84,10 @@ public class ShowsAdapter extends RecyclerView.Adapter<ShowsAdapter.MyViewHolder
             else if(ShowsActivity.getDate().equals("Day after Tomorrow"))
                 cal.add(Calendar.DATE,2);
             //Setting the date and time of the show
-//            cal.set(Calendar.HOUR_OF_DAY,date.getHours());
-//            cal.set(Calendar.MINUTE,date.getMinutes());
-            cal.set(Calendar.HOUR_OF_DAY,12);
-            cal.set(Calendar.MINUTE,52);
+            cal.set(Calendar.HOUR_OF_DAY,date.getHours());
+            cal.set(Calendar.MINUTE,date.getMinutes());
+//            cal.set(Calendar.HOUR_OF_DAY,12);
+//            cal.set(Calendar.MINUTE,52);
             cal.set(Calendar.SECOND,0);
 
 
@@ -94,7 +98,7 @@ public class ShowsAdapter extends RecyclerView.Adapter<ShowsAdapter.MyViewHolder
             values.put(Columns.TIME,shows.getTime());
             values.put(Columns.URL,shows.getUrl());
             if(cal.after(Calendar.getInstance())) {
-            //    context.getContentResolver().insert(ShowProvider.Shows.CONTENT_URI, values);
+                Uri uri=context.getContentResolver().insert(ShowProvider.Shows.CONTENT_URI, values);
                 setAlarm(shows,cal);
             }
             else
@@ -116,6 +120,7 @@ public class ShowsAdapter extends RecyclerView.Adapter<ShowsAdapter.MyViewHolder
         AlarmManager alarmManager=(AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
         alarmManager.set(AlarmManager.RTC_WAKEUP,cal.getTimeInMillis(),pendingIntent);
         Log.d(LOG,"ALARM");
+        ReminderFragment.change();
     }
 
     @Override

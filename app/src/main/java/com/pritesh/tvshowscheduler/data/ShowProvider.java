@@ -12,7 +12,7 @@ import net.simonvt.schematic.annotation.TableEndpoint;
  */
 @ContentProvider(authority=ShowProvider.AUTHORITY, database = Database.class)
 public class ShowProvider {
-    public static final String AUTHORITY ="com.pritesh.tvshowscheduler.Data";
+    public static final String AUTHORITY ="com.pritesh.tvshowscheduler.data";
 
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + AUTHORITY);
 

@@ -7,10 +7,11 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <ImageView
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="531dp"
-        app:srcCompat="@mipmap/ic_launcher"
-        android:id="@+id/imageView2" />
+        android:layout_height="match_parent"
+        android:id="@+id/reminderView"
+        android:background="@color/colorAccent"
+        android:padding="10dp" />
 
 </FrameLayout>
