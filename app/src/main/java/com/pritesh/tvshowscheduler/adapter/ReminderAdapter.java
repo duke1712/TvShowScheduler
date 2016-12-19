@@ -77,6 +77,7 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.MyView
     }
 
     public static void swap(Cursor c) {
+
         mCursorAdapter.swapCursor(c);
     }
 

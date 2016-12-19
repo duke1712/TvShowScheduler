@@ -11,7 +11,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.pritesh.tvshowscheduler.Constants;
+import com.pritesh.tvshowscheduler.TvShow;
 import com.pritesh.tvshowscheduler.Utils;
 import com.pritesh.tvshowscheduler.model.Channel;
 import com.pritesh.tvshowscheduler.adapter.ChannelAdapter;
@@ -31,6 +37,7 @@ public class MainFragment extends Fragment {
     public RecyclerView recyclerView;
     public ChannelAdapter channelAdapter;
     public List<Channel> channelList;
+    private Tracker mTracker;
 
     public MainFragment() {
         // Required empty public constructor
@@ -46,7 +53,15 @@ public class MainFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_main, container, false);
+        TvShow application = (TvShow) MainActivity.app;
+        mTracker = application.getDefaultTracker();
         channelList=new ArrayList<>();
+        mTracker.setScreenName("MainFragment~");
+        MobileAds.initialize(MainActivity.context, "ca-app-pub-3940256099942544~3347511713");
+        AdView mAdView = (AdView) view.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
         recyclerView=(RecyclerView)view.findViewById(R.id.recycler_view);
         channelAdapter=new ChannelAdapter(channelList,getContext());
         for(int i=0;i<10;i++)

@@ -37,6 +37,7 @@ import java.util.List;
  */
 
 public class ShowsAdapter extends RecyclerView.Adapter<ShowsAdapter.MyViewHolder> {
+    public static final String ACTION_DATA_UPDATED = "com.pritesh.tvshowscheduler.adapter.ACTION_DATA_UPDATED";
     private List<Shows> showsList;
     Context context;
     public final String LOG="com.pritesh";
@@ -49,7 +50,6 @@ public class ShowsAdapter extends RecyclerView.Adapter<ShowsAdapter.MyViewHolder
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.shows_list_item, parent, false);
         return new ShowsAdapter.MyViewHolder(itemView);
     }
-
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         final Shows shows=showsList.get(position);
@@ -72,7 +72,6 @@ public class ShowsAdapter extends RecyclerView.Adapter<ShowsAdapter.MyViewHolder
             }
         });
     }
-
     private void setTime(Shows shows) {
         SimpleDateFormat sdf=new SimpleDateFormat("HH:mm:ss");
         try {
@@ -84,13 +83,11 @@ public class ShowsAdapter extends RecyclerView.Adapter<ShowsAdapter.MyViewHolder
             else if(ShowsActivity.getDate().equals("Day after Tomorrow"))
                 cal.add(Calendar.DATE,2);
             //Setting the date and time of the show
-//            cal.set(Calendar.HOUR_OF_DAY,date.getHours());
-//            cal.set(Calendar.MINUTE,date.getMinutes());
-            cal.set(Calendar.HOUR_OF_DAY,11);
-            cal.set(Calendar.MINUTE,14);
+            cal.set(Calendar.HOUR_OF_DAY,date.getHours());
+            cal.set(Calendar.MINUTE,date.getMinutes());
+//            cal.set(Calendar.HOUR_OF_DAY,14);
+//            cal.set(Calendar.MINUTE,);
             cal.set(Calendar.SECOND,0);
-
-
             //Content Values
             ContentValues values=new ContentValues();
             values.put(Columns._ID,shows.getId());
@@ -109,9 +106,7 @@ public class ShowsAdapter extends RecyclerView.Adapter<ShowsAdapter.MyViewHolder
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
     }
-
     private void setAlarm(Shows shows, Calendar cal) {
         Intent alarmIntent=new Intent(context, AlarmReciever.class);
         alarmIntent.setAction("ALARM");
@@ -125,12 +120,10 @@ public class ShowsAdapter extends RecyclerView.Adapter<ShowsAdapter.MyViewHolder
         Toast.makeText(context,"Reminder set sucessfull",Toast.LENGTH_SHORT).show();
         ReminderFragment.change();
     }
-
     @Override
     public int getItemCount() {
         return showsList.size();
     }
-
     public class MyViewHolder extends RecyclerView.ViewHolder{
         public TextView title,time;
         public ImageView imageView;
