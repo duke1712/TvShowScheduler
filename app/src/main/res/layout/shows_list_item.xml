@@ -39,7 +39,8 @@
             android:id="@+id/time"
             android:layout_weight="0.10"
             tools:text="TextView"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:contentDescription="@string/set_reminder"/>
 
     </LinearLayout>
 

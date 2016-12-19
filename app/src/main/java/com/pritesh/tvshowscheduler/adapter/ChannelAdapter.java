@@ -3,6 +3,7 @@ package com.pritesh.tvshowscheduler.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.annotation.StringRes;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,6 +53,7 @@ public class ChannelAdapter extends RecyclerView.Adapter<ChannelAdapter.MyViewHo
         final Channel channel=channelList.get(position);
         holder.name.setText(channel.getDisplay_name());
         Picasso.with(context).load(Uri.parse(channel.getImage_url().trim())).fit().into(holder.imageView);
+        holder.imageView.setContentDescription(channel.getDisplay_name());
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

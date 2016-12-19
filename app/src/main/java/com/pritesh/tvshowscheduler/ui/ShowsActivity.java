@@ -46,7 +46,7 @@ public class ShowsActivity extends AppCompatActivity implements LoaderManager.Lo
     private Toolbar toolbar;
     static Spinner schedule_spinner;
     RecyclerView recyclerView;
-    ShowsAdapter showsAdapter;
+    public static ShowsAdapter showsAdapter;
     String name,displayName;
     static ProgressDialog mProgressDialog;
     static OkHttpClient client = new OkHttpClient();
@@ -140,6 +140,9 @@ public class ShowsActivity extends AppCompatActivity implements LoaderManager.Lo
             }
         } catch (JSONException e) {
             e.printStackTrace();
+        }
+        catch (NullPointerException n){
+            n.printStackTrace();
         }
         showsAdapter.notifyDataSetChanged();
         mProgressDialog.cancel();

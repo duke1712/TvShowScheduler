@@ -84,10 +84,10 @@ public class ShowsAdapter extends RecyclerView.Adapter<ShowsAdapter.MyViewHolder
             else if(ShowsActivity.getDate().equals("Day after Tomorrow"))
                 cal.add(Calendar.DATE,2);
             //Setting the date and time of the show
-            cal.set(Calendar.HOUR_OF_DAY,date.getHours());
-            cal.set(Calendar.MINUTE,date.getMinutes());
-//            cal.set(Calendar.HOUR_OF_DAY,12);
-//            cal.set(Calendar.MINUTE,52);
+//            cal.set(Calendar.HOUR_OF_DAY,date.getHours());
+//            cal.set(Calendar.MINUTE,date.getMinutes());
+            cal.set(Calendar.HOUR_OF_DAY,11);
+            cal.set(Calendar.MINUTE,14);
             cal.set(Calendar.SECOND,0);
 
 
@@ -116,10 +116,13 @@ public class ShowsAdapter extends RecyclerView.Adapter<ShowsAdapter.MyViewHolder
         Intent alarmIntent=new Intent(context, AlarmReciever.class);
         alarmIntent.setAction("ALARM");
         alarmIntent.putExtra("SHOW",shows.getTitle());
+        alarmIntent.putExtra("ID",shows
+                .getId());
         PendingIntent pendingIntent=PendingIntent.getBroadcast(context,0,alarmIntent,0);
         AlarmManager alarmManager=(AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
         alarmManager.set(AlarmManager.RTC_WAKEUP,cal.getTimeInMillis(),pendingIntent);
         Log.d(LOG,"ALARM");
+        Toast.makeText(context,"Reminder set sucessfull",Toast.LENGTH_SHORT).show();
         ReminderFragment.change();
     }
 

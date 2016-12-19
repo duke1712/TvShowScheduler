@@ -20,6 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/date_spinner"
+            android:contentDescription="@string/select_day"
             android:padding="20dp" />
     </android.support.design.widget.AppBarLayout>
 

@@ -21,7 +21,7 @@ import java.util.zip.Inflater;
  */
 
 public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.MyViewHolder> {
-    CursorAdapter mCursorAdapter;
+    static CursorAdapter mCursorAdapter;
 
     Context mContext;
 
@@ -38,7 +38,7 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.MyView
         mCursorAdapter = new CursorAdapter(mContext, cursor, 0) {
             ImageView imageView;
             TextView title,time;
-            Button button;
+       //     Button button;
 
             @Override
             public View newView(Context context, Cursor cursor, ViewGroup parent) {
@@ -47,7 +47,7 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.MyView
                 imageView=(ImageView)view.findViewById(R.id.imageView4);
                 title=(TextView)view.findViewById(R.id.title1);
                 time=(TextView) view.findViewById(R.id.time1);
-                button=(Button)view.findViewById(R.id.reminder1);
+              //  button=(Button)view.findViewById(R.id.reminder1);
                 return view;
             }
 
@@ -57,6 +57,7 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.MyView
                 time.setText(cursor.getString(3));
                 title.setText(cursor.getString(1));
                 Picasso.with(context).load(cursor.getString(2)).into(imageView);
+
             }
         };
     }
@@ -74,6 +75,11 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.MyView
 
 
     }
+
+    public static void swap(Cursor c) {
+        mCursorAdapter.swapCursor(c);
+    }
+
 
     @Override
     public int getItemCount() {

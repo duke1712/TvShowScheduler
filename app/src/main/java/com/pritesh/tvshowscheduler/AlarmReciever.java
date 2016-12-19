@@ -14,8 +14,12 @@ import android.support.v4.content.WakefulBroadcastReceiver;
 import android.support.v7.view.ContextThemeWrapper;
 import android.util.Log;
 
+import com.pritesh.tvshowscheduler.adapter.ReminderAdapter;
+import com.pritesh.tvshowscheduler.data.Columns;
+import com.pritesh.tvshowscheduler.data.ShowProvider;
 import com.pritesh.tvshowscheduler.model.Shows;
 import com.pritesh.tvshowscheduler.ui.DialogActivity;
+import com.pritesh.tvshowscheduler.ui.ReminderFragment;
 import com.pritesh.tvshowscheduler.ui.ShowsActivity;
 
 import static android.content.Context.NOTIFICATION_SERVICE;
@@ -41,10 +45,13 @@ public class AlarmReciever extends WakefulBroadcastReceiver {
         //int id=context.getResources().getIdentifier("alarm.mp3","raw",context.getPackageName());
         AudioPlayer.playAudio(context);
         String show=intent.getStringExtra("SHOW");
+        long id=intent.getLongExtra("ID",-1);
         Intent intent1=new Intent(context,DialogActivity.class);
         intent1.putExtra("SHOW",show);
-
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        String a[]={String.valueOf(id)};
+        int result=context.getContentResolver().delete(ShowProvider.Shows.CONTENT_URI, Columns._ID+"=?",a);
+        ReminderFragment.change();
         context.startActivity(intent1);
 
     }

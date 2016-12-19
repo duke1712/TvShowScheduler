@@ -25,7 +25,7 @@ import com.squareup.picasso.Picasso;
  */
 public class ReminderFragment extends Fragment {
 
-    RecyclerView reminderView;
+   static  RecyclerView reminderView;
     static ReminderAdapter reminderAdapter;
     public ReminderFragment() {
         // Required empty public constructor
@@ -43,7 +43,7 @@ public class ReminderFragment extends Fragment {
         View view= inflater.inflate(R.layout.fragment_reminder, container, false);
         reminderView=(RecyclerView)view.findViewById(R.id.reminderView);
         Cursor cursor=MainActivity.context.getContentResolver().query(ShowProvider.Shows.CONTENT_URI,null,null,null,null);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(MainActivity.context);
         reminderView.setLayoutManager(mLayoutManager);
         reminderView.setItemAnimator(new DefaultItemAnimator());
         reminderAdapter=new ReminderAdapter(getContext(),cursor);
@@ -52,6 +52,9 @@ public class ReminderFragment extends Fragment {
         return  view;
     }
     public static void change(){
+        Cursor cursor=MainActivity.context.getContentResolver().query(ShowProvider.Shows.CONTENT_URI,null,null,null,null);
+        //reminderAdapter.notify();
+        reminderAdapter.swap(cursor);
         reminderAdapter.notifyDataSetChanged();
     }
 
