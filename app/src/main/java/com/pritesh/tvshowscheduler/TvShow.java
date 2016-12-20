@@ -11,6 +11,7 @@ import com.google.android.gms.analytics.Tracker;
 
 public class TvShow extends Application {
     private Tracker mTracker;
+
     synchronized public Tracker getDefaultTracker() {
         if (mTracker == null) {
             GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);

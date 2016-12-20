@@ -13,13 +13,13 @@ public class Columns {
     public static final String _ID = "_id";
 
     @DataType(DataType.Type.TEXT)
-    public static final String TITLE="title";
+    public static final String TITLE = "title";
 
     @DataType(DataType.Type.TEXT)
-    public static final String URL="url";
+    public static final String URL = "url";
 
     @DataType(DataType.Type.INTEGER)
-    public static final String TIME="time";
+    public static final String TIME = "time";
 
 
 }

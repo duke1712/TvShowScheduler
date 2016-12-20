@@ -20,8 +20,9 @@ import java.io.IOException;
 public class WidgetRemoteViewService extends RemoteViewsService {
     @Override
     public RemoteViewsFactory onGetViewFactory(Intent intent) {
-        return new RemoteViewsFactory(){
+        return new RemoteViewsFactory() {
             Cursor data;
+
             @Override
             public void onCreate() {
 
@@ -35,7 +36,7 @@ public class WidgetRemoteViewService extends RemoteViewsService {
                 data = getContentResolver().query(ShowProvider.Shows.CONTENT_URI,
                         null,
                         null,
-                        null,null);
+                        null, null);
             }
 
             @Override
@@ -51,26 +52,26 @@ public class WidgetRemoteViewService extends RemoteViewsService {
 
             @Override
             public RemoteViews getViewAt(int position) {
-                if (position == AdapterView.INVALID_POSITION ||data == null || !data.moveToPosition(position)) {
+                if (position == AdapterView.INVALID_POSITION || data == null || !data.moveToPosition(position)) {
                     return null;
                 }
-                RemoteViews views = new RemoteViews(getPackageName(),R.layout.widget_listview_item);
-                String title=data.getString(1);
-                String time=data.getString(3);
-                String url=data.getString(2);
+                RemoteViews views = new RemoteViews(getPackageName(), R.layout.widget_listview_item);
+                String title = data.getString(1);
+                String time = data.getString(3);
+                String url = data.getString(2);
                 Bitmap bitmap = null;
                 try {
-                    bitmap=Picasso.with(getApplicationContext()).load(url).get();
+                    bitmap = Picasso.with(getApplicationContext()).load(url).get();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                views.setTextViewText(R.id.title_widget,title);
-                views.setTextViewText(R.id.time_widget,time);
-                views.setImageViewBitmap(R.id.imageView_widget,bitmap);
+                views.setTextViewText(R.id.title_widget, title);
+                views.setTextViewText(R.id.time_widget, time);
+                views.setImageViewBitmap(R.id.imageView_widget, bitmap);
                 final Intent fillInIntent = new Intent();
                 views.setOnClickFillInIntent(R.id.widget_list_view, fillInIntent);
 
-                return  views;
+                return views;
             }
 
             @Override

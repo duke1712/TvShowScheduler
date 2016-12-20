@@ -9,12 +9,14 @@ import android.media.MediaPlayer;
 
 public class AudioPlayer {
     public static MediaPlayer mediaPlayer;
-    public static void playAudio(Context c){
-        mediaPlayer=MediaPlayer.create(c,R.raw.alarm);
+
+    public static void playAudio(Context c) {
+        mediaPlayer = MediaPlayer.create(c, R.raw.alarm);
         mediaPlayer.setLooping(true);
         mediaPlayer.start();
     }
-    public static void stopAudio(){
+
+    public static void stopAudio() {
         mediaPlayer.stop();
     }
 }

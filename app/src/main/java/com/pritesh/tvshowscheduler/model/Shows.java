@@ -1,7 +1,5 @@
 package com.pritesh.tvshowscheduler.model;
 
-import java.sql.Time;
-
 /**
  * Created by prittesh on 14/12/16.
  */
@@ -10,7 +8,7 @@ public class Shows {
     private String title;
     private String time;
     private String url;
-    private Long  id;
+    private Long id;
 
     public Shows() {
     }
@@ -20,11 +18,12 @@ public class Shows {
         this.time = time;
         this.url = url;
     }
-    public Shows(String title, String time, String url,Long id) {
+
+    public Shows(String title, String time, String url, Long id) {
         this.title = title;
         this.time = time;
         this.url = url;
-        this.id=id;
+        this.id = id;
     }
 
     public String getTitle() {

@@ -10,9 +10,9 @@ import net.simonvt.schematic.annotation.TableEndpoint;
 /**
  * Created by prittesh on 14/12/16.
  */
-@ContentProvider(authority=ShowProvider.AUTHORITY, database = Database.class)
+@ContentProvider(authority = ShowProvider.AUTHORITY, database = Database.class)
 public class ShowProvider {
-    public static final String AUTHORITY ="com.pritesh.tvshowscheduler.data";
+    public static final String AUTHORITY = "com.pritesh.tvshowscheduler.data";
 
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + AUTHORITY);
 
@@ -23,6 +23,7 @@ public class ShowProvider {
         }
         return builder.build();
     }
+
     @TableEndpoint(table = Database.shows)
     public static class Shows {
         @ContentUri(

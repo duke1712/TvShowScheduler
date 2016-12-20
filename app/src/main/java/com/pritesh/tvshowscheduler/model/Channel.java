@@ -1,7 +1,5 @@
 package com.pritesh.tvshowscheduler.model;
 
-import static android.R.attr.name;
-
 /**
  * Created by prittesh on 13/12/16.
  */
@@ -10,13 +8,13 @@ public class Channel {
     private String name;
     private String display_name;
     private String image_url;
-    Channel()
-    {
+
+    Channel() {
 
     }
 
-    public Channel(String display_name,String name, String image_url) {
-        this.display_name=display_name;
+    public Channel(String display_name, String name, String image_url) {
+        this.display_name = display_name;
         this.name = name;
         this.image_url = image_url;
     }

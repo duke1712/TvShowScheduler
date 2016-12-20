@@ -11,5 +11,7 @@ public class Database {
     public static final int VERSION = 1;
     @Table(Columns.class)
     public static final String shows = "Shows";
-    private Database(){}
+
+    private Database() {
+    }
 }

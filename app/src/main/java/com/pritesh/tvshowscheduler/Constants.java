@@ -5,13 +5,13 @@ package com.pritesh.tvshowscheduler;
  */
 
 public class Constants {
-    public final static String BASE_URL="http://indian-television-guide.appspot.com/indian_television_guide?channel=";
-    public final static String END_URL="&date=";
-    public final static String CHANNELS[]={
-            "colors","life-ok","sony-entertainment-tv","sony-sab","star-plus","star-world","zee-tv","9xm","mtv","hbo"};
-    public final static String CHANNELS_NAME[]={
-            "Colors","Life Ok","Sony","Sab Tv","StarPlus","StarWorld","ZeeTv","9xm","Mtv","HBO"};
-    public final static String CHANNELS_URL[]={
+    public final static String BASE_URL = "http://indian-television-guide.appspot.com/indian_television_guide?channel=";
+    public final static String END_URL = "&date=";
+    public final static String CHANNELS[] = {
+            "colors", "life-ok", "sony-entertainment-tv", "sony-sab", "star-plus", "star-world", "zee-tv", "9xm", "mtv", "hbo"};
+    public final static String CHANNELS_NAME[] = {
+            "Colors", "Life Ok", "Sony", "Sab Tv", "StarPlus", "StarWorld", "ZeeTv", "9xm", "Mtv", "HBO"};
+    public final static String CHANNELS_URL[] = {
             "https://yt3.ggpht.com/-RrcWZbQ0dKs/AAAAAAAAAAI/AAAAAAAAAAA/1KoxEfT0ZFY/s900-c-k-no-mo-rj-c0xffffff/photo.jpg",
             "http://www.indiantelevision.com/sites/drupal7.indiantelevision.co.in/files/images/tv-images/2014/07/16/life_ok_logo.jpg",
             "https://yt3.ggpht.com/-ZHjW5xTENKE/AAAAAAAAAAI/AAAAAAAAAAA/xI4YdGRWkFM/s900-c-k-no-mo-rj-c0xffffff/photo.jpg",
@@ -23,9 +23,9 @@ public class Constants {
             "http://www.officialpsds.com/images/thumbs/MTV-Logo-psd26045.png",
             "http://cordcuttersnews.com/wp-content/uploads/2014/04/hbologo.gif",
     };
-    public final static String SHOW_LIST="listOfShows";
-    public final static String JSON_TITLE="showTitle";
-    public final static String JSON_TIME="showTime";
-    public final static String JSON_URL="showThumb";
+    public final static String SHOW_LIST = "listOfShows";
+    public final static String JSON_TITLE = "showTitle";
+    public final static String JSON_TIME = "showTime";
+    public final static String JSON_URL = "showThumb";
 
 }
