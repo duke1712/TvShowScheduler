@@ -13,7 +13,7 @@ public class Channel {
 
     }
 
-    public Channel(String display_name, String name, String image_url) {
+    public Channel(String display_name, String name,String image_url) {
         this.display_name = display_name;
         this.name = name;
         this.image_url = image_url;

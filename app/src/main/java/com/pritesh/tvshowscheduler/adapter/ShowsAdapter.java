@@ -16,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crashlytics.android.answers.Answers;
+import com.crashlytics.android.answers.CustomEvent;
 import com.pritesh.tvshowscheduler.AlarmReciever;
 import com.pritesh.tvshowscheduler.R;
 import com.pritesh.tvshowscheduler.data.Columns;
@@ -57,7 +59,7 @@ public class ShowsAdapter extends RecyclerView.Adapter<ShowsAdapter.MyViewHolder
         final Shows shows = showsList.get(position);
         holder.title.setText(shows.getTitle());
         holder.time.setText(shows.getTime());
-        Picasso.with(context).load(shows.getUrl()).fit().into(holder.imageView);
+      //  Picasso.with(context).load(shows.getUrl()).fit().into(holder.imageView);
         holder.reminder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,6 +73,7 @@ public class ShowsAdapter extends RecyclerView.Adapter<ShowsAdapter.MyViewHolder
 //                values.put(Columns.URL,shows.getUrl());
                 // context.getContentResolver().insert(ShowProvider.Shows.CONTENT_URI,values);
                 setTime(shows);
+
             }
         });
     }
@@ -99,6 +102,9 @@ public class ShowsAdapter extends RecyclerView.Adapter<ShowsAdapter.MyViewHolder
             values.put(Columns.URL, shows.getUrl());
             if (cal.after(Calendar.getInstance())) {
                 Uri uri = context.getContentResolver().insert(ShowProvider.Shows.CONTENT_URI, values);
+                Answers.getInstance().logCustom(new CustomEvent("Reminders"));
+
+
                 setAlarm(shows, cal);
             } else {
                 Toast.makeText(context, context.getString(R.string.previous_show_toast), Toast.LENGTH_SHORT).show();
@@ -129,14 +135,14 @@ public class ShowsAdapter extends RecyclerView.Adapter<ShowsAdapter.MyViewHolder
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title, time;
-        public ImageView imageView;
+   //     public ImageView imageView;
         public Button reminder;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             title = (TextView) itemView.findViewById(R.id.title);
             time = (TextView) itemView.findViewById(R.id.time);
-            imageView = (ImageView) itemView.findViewById(R.id.imageView3);
+            //imageView = (ImageView) itemView.findViewById(R.id.imageView3);
             reminder = (Button) itemView.findViewById(R.id.reminder);
         }
     }

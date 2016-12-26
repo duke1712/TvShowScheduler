@@ -26,7 +26,7 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.MyView
         mContext = context;
 
         mCursorAdapter = new CursorAdapter(mContext, cursor, 0) {
-            ImageView imageView;
+          //  ImageView imageView;
             TextView title, time;
             //     Button button;
 
@@ -34,7 +34,7 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.MyView
             public View newView(Context context, Cursor cursor, ViewGroup parent) {
                 // Inflate the view here
                 View view = LayoutInflater.from(context).inflate(R.layout.reminder_list_item, parent);
-                imageView = (ImageView) view.findViewById(R.id.imageView4);
+            //    imageView = (ImageView) view.findViewById(R.id.imageView4);
                 title = (TextView) view.findViewById(R.id.title1);
                 time = (TextView) view.findViewById(R.id.time1);
                 //  button=(Button)view.findViewById(R.id.reminder1);
@@ -46,7 +46,7 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.MyView
                 // Binding operations
                 time.setText(cursor.getString(3));
                 title.setText(cursor.getString(1));
-                Picasso.with(context).load(cursor.getString(2)).into(imageView);
+              //  Picasso.with(context).load(cursor.getString(2)).into(imageView);
 
             }
         };

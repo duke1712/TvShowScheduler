@@ -52,7 +52,7 @@ public class ReminderFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_reminder, container, false);
         reminderView = (RecyclerView) view.findViewById(R.id.reminderView);
         Cursor cursor = context.getContentResolver().query(ShowProvider.Shows.CONTENT_URI, null, null, null, null);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(context);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false);
         reminderView.setLayoutManager(mLayoutManager);
         reminderView.setItemAnimator(new DefaultItemAnimator());
         reminderAdapter = new ReminderAdapter(getContext(), cursor);

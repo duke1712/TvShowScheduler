@@ -31,9 +31,10 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/darker_gray"
                 android:text="TextView"
-                android:textAlignment="center"
+                android:textAlignment="textStart"
                 android:textColor="@color/textColorPrimary"
-                android:textSize="30sp" />
+                android:textSize="30sp"
+                android:padding="5dp" />
         </LinearLayout>
     </android.support.v7.widget.CardView>
 </LinearLayout>
