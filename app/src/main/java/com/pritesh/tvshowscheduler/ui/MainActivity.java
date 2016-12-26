@@ -13,6 +13,10 @@ import android.support.v7.widget.Toolbar;
 
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.answers.Answers;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.pritesh.tvshowscheduler.R;
 
 import java.util.ArrayList;
@@ -42,6 +46,13 @@ public class MainActivity extends AppCompatActivity {
         setupViewPager(viewPager);
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+        MobileAds.initialize(MainActivity.context, "ca-app-pub-1508240473467237/4999036703");
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice("F23DCC00AE6CBC85EBBCBCBBE0BA8F47")
+                .build();
+     //   mAdView.setAdSize(AdSize.BANNER);
+        mAdView.loadAd(adRequest);
 
     }
 

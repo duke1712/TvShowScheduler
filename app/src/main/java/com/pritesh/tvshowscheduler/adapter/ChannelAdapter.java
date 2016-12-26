@@ -42,6 +42,7 @@ public class ChannelAdapter extends RecyclerView.Adapter<ChannelAdapter.MyViewHo
         final Channel channel = channelList.get(position);
         holder.name.setText(channel.getDisplay_name());
         Picasso.with(context).load(Uri.parse(channel.getImage_url().trim())).fit().into(holder.imageView);
+        holder.name.setVisibility(View.GONE);
         holder.imageView.setContentDescription(channel.getDisplay_name());
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
