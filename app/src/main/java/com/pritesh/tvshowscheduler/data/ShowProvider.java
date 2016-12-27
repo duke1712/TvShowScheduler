@@ -43,4 +43,23 @@ public class ShowProvider {
             return buildUri("Shows", String.valueOf(id));
         }
     }
+    @TableEndpoint(table = Database.channels)
+    public static class Channels {
+        @ContentUri(
+                path = "Channels",
+                type = "vnd.android.cursor.dir/Channels",
+                defaultSort = ChannelColumn.NAME)
+        public static final Uri CONTENT_URI = buildUri("Channels");
+
+        @InexactContentUri(
+                name = "Channel_id",
+                path = "Channel" + "/#",
+                type = "vnd.android.cursor.item/Channel",
+                whereColumn= ChannelColumn._ID,
+                pathSegment = 1
+        )
+        public static Uri withId(int id) {
+            return buildUri("Channels", String.valueOf(id));
+        }
+    }
 }

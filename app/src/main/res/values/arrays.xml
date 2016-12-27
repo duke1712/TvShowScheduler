@@ -5,4 +5,15 @@
         <item name="tommorow">Tomorrow</item>
         <item name="after_tomm">Day after Tomorrow</item>
     </string-array>
+
+    <string-array name="category">
+        <item name="All">All</item>
+        <item name="Movies">Movies</item>
+        <item name="Entertainment">Entertainment</item>
+        <item name="Kids">Kids</item>
+        <item name="Documentry">Documentry</item>
+        <item name="Music">Music</item>
+        <item name="News">News</item>
+        <item name="Sports">Sports</item>
+    </string-array>
 </resources>

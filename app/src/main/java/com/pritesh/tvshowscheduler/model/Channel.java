@@ -8,6 +8,7 @@ public class Channel {
     private String name;
     private String display_name;
     private String image_url;
+    private String category;
 
     Channel() {
 

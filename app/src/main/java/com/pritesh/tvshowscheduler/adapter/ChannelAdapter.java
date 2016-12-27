@@ -23,7 +23,7 @@ import java.util.List;
 
 public class ChannelAdapter extends RecyclerView.Adapter<ChannelAdapter.MyViewHolder> {
     Context context;
-    private List<Channel> channelList;
+    private static List<Channel> channelList;
 
 
     public ChannelAdapter(List<Channel> channelList, Context context) {
@@ -68,6 +68,13 @@ public class ChannelAdapter extends RecyclerView.Adapter<ChannelAdapter.MyViewHo
             super(view);
             name = (TextView) view.findViewById(R.id.name);
             imageView = (ImageView) view.findViewById(R.id.imageView);
+
         }
+    }
+    public void data(List<Channel> channels)
+    {
+        channelList.clear();
+        channelList.addAll(channels);
+        notifyDataSetChanged();
     }
 }

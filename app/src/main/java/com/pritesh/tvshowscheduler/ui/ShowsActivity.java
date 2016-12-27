@@ -76,7 +76,10 @@ public class ShowsActivity extends AppCompatActivity implements LoaderManager.Lo
                 R.array.schedule, R.layout.spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         schedule_spinner.setAdapter(adapter);
-        toolbar.setTitle(displayName);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(displayName);
         showsAdapter = new ShowsAdapter(showsList, getApplicationContext());
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);

@@ -20,6 +20,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <meta-data
             android:name="io.fabric.ApiKey"
@@ -31,7 +32,10 @@
             android:name=".data.generated.ShowProvider"
             android:authorities="com.pritesh.tvshowscheduler.data"
             android:exported="true" />
-
+        <provider
+            android:name=".data.generated.ChannelProvider"
+            android:authorities="com.pritesh.tvshowscheduler.data"
+            android:exported="true" />
         <receiver
             android:name=".AlarmReciever"
             android:enabled="true"

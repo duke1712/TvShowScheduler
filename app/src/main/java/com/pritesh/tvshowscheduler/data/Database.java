@@ -1,5 +1,8 @@
 package com.pritesh.tvshowscheduler.data;
 
+import com.pritesh.tvshowscheduler.adapter.ShowsAdapter;
+import com.pritesh.tvshowscheduler.model.Channel;
+
 import net.simonvt.schematic.annotation.Table;
 
 
@@ -12,6 +15,9 @@ public class Database {
     @Table(Columns.class)
     public static final String shows = "Shows";
 
+    @Table(ChannelColumn.class)
+    public static final String channels = "Channels";
     private Database() {
+
     }
 }
