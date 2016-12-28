@@ -10,7 +10,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.TextView;
 
+import com.pritesh.tvshowscheduler.BuildConfig;
 import com.pritesh.tvshowscheduler.R;
 
 /**
@@ -25,6 +27,8 @@ public class Splash extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        TextView version=(TextView)findViewById(R.id.version);
+        version.setText(BuildConfig.VERSION_NAME);
         int SPLASH_TIME_OUT = 2000;
         new Handler().postDelayed(new Runnable() {
 

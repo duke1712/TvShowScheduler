@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
@@ -37,6 +38,7 @@ public class MainFragment extends Fragment {
     public List<Channel> channelList;
     private Tracker mTracker;
     SearchView search;
+
     public MainFragment() {
         // Required empty public constructor
     }
@@ -65,26 +67,25 @@ public class MainFragment extends Fragment {
         channelAdapter = new ChannelAdapter(channelList, getContext());
         search=(SearchView) view.findViewById(R.id.search);
         search.setQueryHint("SearchView");
-
+        search.setIconified(false);
+        search.clearFocus();
         search.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
 
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 // TODO Auto-generated method stub
 
-                Toast.makeText(MainActivity.context, String.valueOf(hasFocus),
-                        Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.context, String.valueOf(hasFocus),
+//                        Toast.LENGTH_SHORT).show();
             }
         });
-
         //*** setOnQueryTextListener ***
         search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
             @Override
             public boolean onQueryTextSubmit(String query) {
                 // TODO Auto-generated method stub
-                Toast.makeText(MainActivity.context, query,
-                        Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.context,query,Toast.LENGTH_SHORT).show();
 
                 return false;
             }
@@ -100,11 +101,12 @@ public class MainFragment extends Fragment {
                         newList.add(channelList.get(i));
                     }
                 }
-                channelAdapter.data(newList);
-                channelAdapter.notifyDataSetChanged();
+
+               channelAdapter=new ChannelAdapter(newList,getActivity().getApplicationContext());
+                recyclerView.setAdapter(channelAdapter);
+               // channelAdapter.data(newList);
                 recyclerView.scrollToPosition(0);
-                Toast.makeText(MainActivity.context, newText,
-                Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.context, newText,Toast.LENGTH_SHORT).show();
                 return false;
             }
         });
