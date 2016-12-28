@@ -24,11 +24,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.MainActivity">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
 
         <meta-data
@@ -74,8 +76,7 @@
             android:name=".widget.WidgetRemoteViewService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
 
-
+        <activity android:name=".ui.About"></activity>
     </application>
 
-</manifest>
-    <!--android:label="@string/title_activity_splash"-->
+</manifest> <!-- android:label="@string/title_activity_splash" -->

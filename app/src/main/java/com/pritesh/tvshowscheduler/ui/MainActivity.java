@@ -3,6 +3,7 @@ package com.pritesh.tvshowscheduler.ui;
 import android.app.Application;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -13,6 +14,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -90,9 +93,26 @@ public class MainActivity extends AppCompatActivity {
             editor.putBoolean("Data",true).commit();
             createData();
         }
+
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
 
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.about:
+                startActivity(new Intent(this,About.class));
+                return true;
+            default:
+            return super.onOptionsItemSelected(item);
+        }
+    }
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
@@ -1427,12 +1447,12 @@ public class MainActivity extends AppCompatActivity {
 
         values[258].put(ChannelColumn._ID,"star-sports-hd-1");
         values[258].put(ChannelColumn.NAME,"Star Sports HD 1");
-        values[258].put(ChannelColumn.URL,"http://tvimages.burrp.com/images/channels2/Sports/star-sports-hd-1.png");
+        values[258].put(ChannelColumn.URL,"http://tvimages.burrp.com/images/channels2/Sports/starsports-HD1.png");
         values[258].put(ChannelColumn.CATEGORY,"Sports");
 
         values[259].put(ChannelColumn._ID,"star-sports-hd-2");
         values[259].put(ChannelColumn.NAME,"Star Sports HD 2");
-        values[259].put(ChannelColumn.URL,"http://tvimages.burrp.com/images/channels2/Sports/star-sports-hd-2.png");
+        values[259].put(ChannelColumn.URL,"http://tvimages.burrp.com/images/channels2/Sports/starsports-HD2.png");
         values[259].put(ChannelColumn.CATEGORY,"Sports");
 
         values[260].put(ChannelColumn._ID,"star-sports-hd-3");
