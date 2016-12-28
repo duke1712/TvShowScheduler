@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -108,6 +109,12 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.about:
                 startActivity(new Intent(this,About.class));
+                return true;
+            case R.id.feedback:
+                String url = "https://goo.gl/forms/NDNqPuCGhmYf7pVF3";
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
                 return true;
             default:
             return super.onOptionsItemSelected(item);

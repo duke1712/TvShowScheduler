@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.pritesh.tvshowscheduler.AlarmReciever;
 import com.pritesh.tvshowscheduler.R;
@@ -74,10 +75,10 @@ public class ReminderAdapter1 extends RecyclerView.Adapter<ReminderAdapter1.MyVi
                 alarmManager.cancel(cancel);
                 String a[]={String.valueOf(shows.getId())};
 
-
+                Toast.makeText(context,"Reminder Deleted!!!",Toast.LENGTH_SHORT).show();
 
                 int b=context.getContentResolver().delete(ShowProvider.Shows.CONTENT_URI, Columns._ID+"=?",a);
-                Cursor c=context.getContentResolver().query(ShowProvider.Shows.CONTENT_URI,null,null,null,null);
+                //Cursor c=context.getContentResolver().query(ShowProvider.Shows.CONTENT_URI,null,null,null,null);
                 ReminderFragment.change();
             }
         });

@@ -6,4 +6,9 @@
         android:orderInCategory="1"
         android:showAsAction="never"
         tools:ignore="AppCompatResource" />
+    <item android:title="Feedback &amp; Suggestion"
+        android:id="@+id/feedback"
+        android:orderInCategory="2"
+        android:showAsAction="never"
+        tools:ignore="AppCompatResource" />
 </menu>

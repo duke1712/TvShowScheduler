@@ -6,6 +6,7 @@ import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -72,6 +73,12 @@ public class ShowsActivity extends AppCompatActivity implements LoaderManager.Lo
         switch (item.getItemId()) {
             case R.id.about:
                 startActivity(new Intent(this,About.class));
+                return true;
+            case R.id.feedback:
+                String url = "https://goo.gl/forms/NDNqPuCGhmYf7pVF3";
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
