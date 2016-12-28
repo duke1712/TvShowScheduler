@@ -8,7 +8,7 @@ public class Shows {
     private String title;
     private String time;
     private String url;
-    private Long id;
+    private int id;
 
     public Shows() {
     }
@@ -19,7 +19,7 @@ public class Shows {
         this.url = url;
     }
 
-    public Shows(String title, String time, String url, Long id) {
+    public Shows(String title, String time, String url, int id) {
         this.title = title;
         this.time = time;
         this.url = url;
@@ -50,11 +50,11 @@ public class Shows {
         this.url = url;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 }

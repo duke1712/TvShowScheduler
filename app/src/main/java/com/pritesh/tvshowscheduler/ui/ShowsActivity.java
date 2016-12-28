@@ -43,6 +43,7 @@ public class ShowsActivity extends AppCompatActivity implements LoaderManager.Lo
     RecyclerView recyclerView;
     String name, displayName;
     List<Shows> showsList = new ArrayList<>();
+    public static Context context;
     private Toolbar toolbar;
 
     public static String getDate() {
@@ -62,6 +63,7 @@ public class ShowsActivity extends AppCompatActivity implements LoaderManager.Lo
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shows);
+        context=this;
         Intent intent = getIntent();
         name = intent.getStringExtra("CHANNEL_NAME");
         displayName = intent.getStringExtra("CHANNEL_DISPLAY_NAME");

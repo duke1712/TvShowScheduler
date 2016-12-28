@@ -19,8 +19,8 @@ public class DialogActivity extends AppCompatActivity {
         Context context;
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         // android.support.v7.app.AlertDialog.Builder builder=new android.support.v7.app.AlertDialog.Builder(context);
-     //   builder.setTitle("SHOW REMINDER");
-        builder.setMessage(intent.getStringExtra(getApplicationContext().getString(R.string.alarm)) + getApplicationContext().getString(R.string.alarm_message))
+        //   builder.setTitle("SHOW REMINDER");
+        builder.setMessage(intent.getStringExtra(getApplicationContext().getString(R.string.show)) + getApplicationContext().getString(R.string.alarm_message))
                 .setCancelable(false)
                 .setPositiveButton("STOP", new DialogInterface.OnClickListener() {
                     @Override

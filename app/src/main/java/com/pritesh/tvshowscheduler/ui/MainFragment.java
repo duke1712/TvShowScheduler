@@ -53,16 +53,8 @@ public class MainFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         TvShow application = (TvShow) MainActivity.app;
-        mTracker = application.getDefaultTracker();
         channelList = new ArrayList<>();
-        mTracker.setScreenName("MainFragment~");
-//        MobileAds.initialize(MainActivity.context, "ca-app-pub-1508240473467237/4999036703");
-//        AdView mAdView = (AdView) view.findViewById(R.id.adView);
-//        AdRequest adRequest = new AdRequest.Builder()
-//                .addTestDevice("F23DCC00AE6CBC85EBBCBCBBE0BA8F47")
-//                .build();
-//        mAdView.loadAd(adRequest);
-        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
+
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         channelAdapter = new ChannelAdapter(channelList, getContext());
         search=(SearchView) view.findViewById(R.id.search);

@@ -65,7 +65,8 @@ public class ShowsAdapter extends RecyclerView.Adapter<ShowsAdapter.MyViewHolder
             public void onClick(View view) {
                 Calendar timeStamp = Calendar.getInstance();
                 long id = timeStamp.getTimeInMillis();
-                shows.setId(id);
+
+                shows.setId((int)id);
 //                ContentValues values=new ContentValues();
 //                values.put(Columns._ID,id);
 //                values.put(Columns.TITLE,shows.getTitle());
@@ -92,7 +93,7 @@ public class ShowsAdapter extends RecyclerView.Adapter<ShowsAdapter.MyViewHolder
             cal.set(Calendar.HOUR_OF_DAY, date.getHours());
             cal.set(Calendar.MINUTE, date.getMinutes()-5);
 //            cal.set(Calendar.HOUR_OF_DAY,14);
-//            cal.set(Calendar.MINUTE,);
+//            cal.set(Calendar.MINUTE,34);
             cal.set(Calendar.SECOND, 0);
             //Content Values
             ContentValues values = new ContentValues();
@@ -120,12 +121,13 @@ public class ShowsAdapter extends RecyclerView.Adapter<ShowsAdapter.MyViewHolder
         alarmIntent.setAction(context.getString(R.string.alarm));
         alarmIntent.putExtra(context.getString(R.string.show), shows.getTitle());
         alarmIntent.putExtra(context.getString(R.string.id), shows.getId());
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, alarmIntent, 0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, shows.getId(), alarmIntent, 0);
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
         Log.d(LOG, context.getString(R.string.alarm));
         Toast.makeText(context, context.getString(R.string.reminder_sucessfull), Toast.LENGTH_SHORT).show();
         ReminderFragment.change();
+
     }
 
     @Override
