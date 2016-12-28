@@ -63,50 +63,51 @@ public class MainFragment extends Fragment {
         mTracker.send(new HitBuilders.ScreenViewBuilder().build());
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         channelAdapter = new ChannelAdapter(channelList, getContext());
-//        search=(SearchView) view.findViewById(R.id.search);
-//        search.setQueryHint("SearchView");
-//
-//        search.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
-//
-//            @Override
-//            public void onFocusChange(View v, boolean hasFocus) {
-//                // TODO Auto-generated method stub
-//
-//                Toast.makeText(MainActivity.context, String.valueOf(hasFocus),
-//                        Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//
-//        //*** setOnQueryTextListener ***
-//        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//                // TODO Auto-generated method stub
-//                Toast.makeText(MainActivity.context, query,
-//                        Toast.LENGTH_SHORT).show();
-//
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String newText) {
-//                // TODO Auto-generated method stub
-//                List<Channel>newList=new ArrayList<Channel>();
-//                for(int i=0;i<262;i++)
-//                {
-//                    if(channelList.get(i).getDisplay_name().contains(newText))
-//                    {
-//                        newList.add(channelList.get(i));
-//                    }
-//                }
-//                channelAdapter.data(newList);
-//               // channelAdapter.notifyDataSetChanged();
-//                Toast.makeText(MainActivity.context, newText,
-//                Toast.LENGTH_SHORT).show();
-//                return false;
-//            }
-//        });
+        search=(SearchView) view.findViewById(R.id.search);
+        search.setQueryHint("SearchView");
+
+        search.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                // TODO Auto-generated method stub
+
+                Toast.makeText(MainActivity.context, String.valueOf(hasFocus),
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //*** setOnQueryTextListener ***
+        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                // TODO Auto-generated method stub
+                Toast.makeText(MainActivity.context, query,
+                        Toast.LENGTH_SHORT).show();
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                // TODO Auto-generated method stub
+                List<Channel>newList=new ArrayList<Channel>();
+                for(int i=0;i<262;i++)
+                {
+                    if(channelList.get(i).getDisplay_name().contains(newText))
+                    {
+                        newList.add(channelList.get(i));
+                    }
+                }
+                channelAdapter.data(newList);
+                channelAdapter.notifyDataSetChanged();
+                recyclerView.scrollToPosition(0);
+                Toast.makeText(MainActivity.context, newText,
+                Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
         Cursor cursor=MainActivity.context.getContentResolver().query(ShowProvider.Channels.CONTENT_URI,null,null,null ,null );
         cursor.moveToFirst();
         for (int i = 0; i < cursor.getCount(); i++) {

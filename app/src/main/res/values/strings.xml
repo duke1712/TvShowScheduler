@@ -22,4 +22,8 @@
     <string name="alarm_message">show is in 5 minutes</string>
     <string name="channels">Channels</string>
     <string name="reminders">Reminders</string>
+
+    <string name="title_activity_splash">Splash</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>
