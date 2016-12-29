@@ -37,7 +37,8 @@
             android:name="io.fabric.ApiKey"
             android:value="84dba40037171ff39352e2ec561a504a93ae824f" />
 
-        <activity android:name=".ui.ShowsActivity" />
+        <activity android:name=".ui.ShowsActivity"
+            android:parentActivityName=".ui.MainActivity"/>
 
         <provider
             android:name=".data.generated.ShowProvider"

@@ -31,7 +31,7 @@ public class AlarmReciever extends WakefulBroadcastReceiver {
         //int id=context.getResources().getIdentifier("alarm.mp3","raw",context.getPackageName());
         AudioPlayer.playAudio(context);
         String show = intent.getStringExtra(context.getString(R.string.show));
-        long id = intent.getLongExtra(context.getString(R.string.id), -1);
+        int id = intent.getIntExtra(context.getString(R.string.id), -1);
         Intent intent1 = new Intent(context, DialogActivity.class);
         intent1.putExtra(context.getString(R.string.show), show);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -39,6 +39,5 @@ public class AlarmReciever extends WakefulBroadcastReceiver {
         int result = context.getContentResolver().delete(ShowProvider.Shows.CONTENT_URI, Columns._ID + "=?", a);
         ReminderFragment.change();
         context.startActivity(intent1);
-
     }
 }

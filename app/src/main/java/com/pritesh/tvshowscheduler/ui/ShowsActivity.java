@@ -89,6 +89,7 @@ public class ShowsActivity extends AppCompatActivity implements LoaderManager.Lo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shows);
         context=this;
+
         Intent intent = getIntent();
         name = intent.getStringExtra("CHANNEL_NAME");
         displayName = intent.getStringExtra("CHANNEL_DISPLAY_NAME");
@@ -160,10 +161,8 @@ public class ShowsActivity extends AppCompatActivity implements LoaderManager.Lo
                                 show.getString(Constants.JSON_TIME),
                                 show.getString(Constants.JSON_URL)));
             }
-        } catch (JSONException e) {
+        } catch (JSONException | NullPointerException e) {
             e.printStackTrace();
-        } catch (NullPointerException n) {
-            n.printStackTrace();
         }
         showsAdapter.notifyDataSetChanged();
         mProgressDialog.cancel();
@@ -179,7 +178,7 @@ public class ShowsActivity extends AppCompatActivity implements LoaderManager.Lo
         String data;
         String channel;
 
-        public getShowsTask(Context context, String channel) {
+        getShowsTask(Context context, String channel) {
             super(context);
             this.channel = channel;
         }
