@@ -50,6 +50,7 @@ public class ChannelAdapter extends RecyclerView.Adapter<ChannelAdapter.MyViewHo
                 Intent intent = new Intent(context, ShowsActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("CHANNEL_NAME", channel.getName());
+
                 intent.putExtra("CHANNEL_DISPLAY_NAME", channel.getDisplay_name());
                 context.startActivity(intent);
             }

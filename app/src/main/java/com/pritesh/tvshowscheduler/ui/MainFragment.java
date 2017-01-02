@@ -61,6 +61,7 @@ public class MainFragment extends Fragment {
         search.setQueryHint("SearchView");
         search.setIconified(false);
         search.clearFocus();
+        search.setQueryHint("SEARCH");
         search.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
 
             @Override
@@ -88,7 +89,7 @@ public class MainFragment extends Fragment {
                 List<Channel>newList=new ArrayList<Channel>();
                 for(int i=0;i<262;i++)
                 {
-                    if(channelList.get(i).getDisplay_name().contains(newText))
+                    if(channelList.get(i).getDisplay_name().toLowerCase().contains(newText.toLowerCase()))
                     {
                         newList.add(channelList.get(i));
                     }
@@ -98,7 +99,7 @@ public class MainFragment extends Fragment {
                 recyclerView.setAdapter(channelAdapter);
                // channelAdapter.data(newList);
                 recyclerView.scrollToPosition(0);
-//                Toast.makeText(MainActivity.context, newText,Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.context, newText,Toast.L.ENGTH_SHORT).show();
                 return false;
             }
         });

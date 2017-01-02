@@ -11,7 +11,7 @@ import net.simonvt.schematic.annotation.Table;
  */
 @net.simonvt.schematic.annotation.Database(version = Database.VERSION)
 public class Database {
-    public static final int VERSION = 1;
+    public static final int VERSION = 2;
     @Table(Columns.class)
     public static final String shows = "Shows";
 
